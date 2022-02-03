@@ -10,6 +10,5 @@ router.post('/uploaduser',uploadUser);
 
 router.post('/updateUser',protect,updateUser);
 
-// router.post('/createroom',createRoom);
 
 module.exports=router;

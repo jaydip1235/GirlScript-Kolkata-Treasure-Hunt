@@ -119,14 +119,3 @@ exports.updateUser=async(req,res)=>{
         res.status(500).json({error:"Something went wrong!"});
     }
 }
-
-//Create room
-// exports.createRoom=async(req,res)=>{
-//     try {
-//         const code=new Code({username:req.body.username});
-//         await code.save();
-//         res.status(201).send(code);
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
