@@ -33,14 +33,14 @@ exports.uploadUser=async(req,res)=>{
         },     
         {
              qno : 3,
-            ques : "question 3",
-            ans : "ans3",
+            ques : "Largest country",
+            ans : "russia",
             flagVal : false
         },
         {
              qno : 4,
-            ques : "question 4",
-            ans : "ans4",
+            ques : "Smallest state",
+            ans : "goa",
             flagVal : false
         }]
         const score=0;
