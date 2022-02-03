@@ -53,7 +53,7 @@ const validateTime = async () => {
   let timestamp = Date.parse(mydata.datetime);
   //console.log(timestamp);
   let start = Date.parse("2022-02-03T10:21:00.004040+05:30");
-  let end = Date.parse("2022-02-03T19:06:00.004040+05:30");
+  let end = Date.parse("2022-02-03T16:09:00.000000+05:30");
   if (timestamp < start) {
     setGameBefore(true);
     setGamein(false);
@@ -95,6 +95,8 @@ const validateTime = async () => {
     }
     else
     setQues(data);
+    const res=await axios.get(process.env.REACT_APP_CHECK_LEADER_BOARD,config);
+    console.log(res.data);
   }
 
   useEffect(()=>{

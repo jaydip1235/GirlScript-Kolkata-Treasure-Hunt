@@ -61,8 +61,10 @@ exports.login=async(req,res)=>{
         const {username,password}=req.body;
         const user=await User.findOne({username});
         if(!user) res.status(400).json({error:"Invalid credentials!"});
-        const token=await user.generateToken();
-        res.status(200).send(token);   
+        else{
+            const token=await user.generateToken();
+            res.status(200).send(token); 
+        }  
     } catch (error) {
         console.log(error);
         res.status(500).json({error:error});
@@ -114,6 +116,17 @@ exports.updateUser=async(req,res)=>{
     }
 }
 
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error:"Something went wrong!"});
+    }
+}
+
+//Check leader board
+exports.checkLeaderBoard=async(req,res)=>{
+    try {
+        const users=await User.find().sort({score:-1,updatedAt:1});
+        res.status(200).send(users);
     } catch (error) {
         console.log(error);
         res.status(500).json({error:"Something went wrong!"});
