@@ -28,15 +28,18 @@ const Play = () => {
     const { data } = await axios.get("/api/getuser", config);
     console.log(data.username);
     setUser(data);
-    let ff=0
+    let ff=0;
     for(let i=0;i<data.questions.length;i++){
-        if(data.questions[i].flagVal==false){
-            setInd(i);
-            ff=1;
-            break;
-        }
+      if(data.questions[i].flagVal==false){
+          setInd(i);
+          ff=1;
+          break;
+      }
     }
-    if(ff === 0) setInd(5);
+    if(ff === 0) {
+      if(data.score<3) setInd(data.score+1);
+      else setInd(4);
+    }
     console.log(ind+"kkk");
      setUsername(data.username);
     
@@ -53,7 +56,7 @@ const validateTime = async () => {
   let timestamp = Date.parse(mydata.datetime);
   //console.log(timestamp);
   let start = Date.parse("2022-02-03T10:21:00.004040+05:30");
-  let end = Date.parse("2022-02-03T16:09:00.000000+05:30");
+  let end = Date.parse("2022-02-04T16:09:00.000000+05:30");
   if (timestamp < start) {
     setGameBefore(true);
     setGamein(false);
@@ -123,8 +126,8 @@ const validateTime = async () => {
     <>
       {gameBefore && <h1>Game has not begun</h1>}
 
-      {(gameAfter ||  gameOver) && <h1>Thank you for playing!</h1>}
-      {gamein && !gameAfter && !gameBefore && !gameOver &&
+      {(gameAfter ||  gameOver || ind==5) && <h1>Thank you for playing!</h1>}
+      {gamein && !gameAfter && !gameBefore && !gameOver && ind<4 &&
         <div>
           <h1>{!ques && <span>Loading...</span>}</h1>
           <h1>{ques && ques.ques}</h1>

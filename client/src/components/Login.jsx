@@ -42,7 +42,7 @@ const Login = () => {
    let timestamp = Date.parse(mydata.datetime);
    //console.log(timestamp);
    let start = Date.parse("2022-02-03T10:21:00.004040+05:30");
-   let end = Date.parse("2022-02-03T18:23:00.004040+05:30");
+   let end = Date.parse("2022-02-04T18:23:00.004040+05:30");
    if (timestamp < start) {
     setGameBefore(true)
     setGamein(false)

@@ -37,12 +37,19 @@ exports.uploadUser=async(req,res)=>{
             ans : "russia",
             flagVal : false
         },
+        // {
+        //      qno : 4,
+        //     ques : "Smallest state",
+        //     ans : "goa",
+        //     flagVal : false
+        // },
         {
-             qno : 4,
-            ques : "Smallest state",
-            ans : "goa",
-            flagVal : false
-        }]
+            qno : 4,
+           ques : "Thank you for playing!",
+           ans : "goa",
+           flagVal : true
+       }
+    ]
         const score=0;
         const newUser=new User({username,password,questions,score});
         newUser.save();
@@ -78,11 +85,11 @@ exports.updateUser=async(req,res)=>{
     try {
          const {idx}=req.body;
          console.log(idx+" index");
-         if(idx===5){
+         if(idx>=4){
                let user =await  User.findOne({username:req.user.username});
             //    console.log(user.score)
-               if(user.score==3){
-                    await User.findOneAndUpdate({username:req.user.username},{score:4},{
+               if(user.score==2){
+                    await User.findOneAndUpdate({username:req.user.username},{score:3},{
                     new: true,
                     upsert: true
       });
