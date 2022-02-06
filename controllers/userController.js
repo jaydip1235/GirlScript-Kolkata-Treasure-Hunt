@@ -20,21 +20,21 @@ exports.uploadUser=async(req,res)=>{
         const questions=[
         {
             qno : 1,
-            ques : "Captial of West Bengal",
-            ans : "kolkata",
+            ques : "https://upload.wikimedia.org/wikipedia/commons/c/c1/Lionel_Messi_20180626.jpg",
+            ans : "messi",
             flagVal : true
 
         },
         {
              qno : 2,
-            ques : "National Animal",
-            ans : "tiger",
+            ques : "https://e0.365dm.com/22/01/768x432/skysports-virat-kohli-cricket_5642119.jpg?20220115135638",
+            ans : "kohli",
             flagVal : false
         },     
         {
              qno : 3,
-            ques : "Largest country",
-            ans : "russia",
+            ques : "https://akm-img-a-in.tosshub.com/aajtak/images/story/202201/lata-sixteen_nine.jpg?size=948:533",
+            ans : "lata",
             flagVal : false
         },
         // {
@@ -69,8 +69,11 @@ exports.login=async(req,res)=>{
         const user=await User.findOne({username});
         if(!user) res.status(400).json({error:"Invalid credentials!"});
         else{
-            const token=await user.generateToken();
-            res.status(200).send(token); 
+            if(user.password!=password) res.status(400).json({error:"Invalid credentials!"});
+            else{
+                const token=await user.generateToken();
+                res.status(200).send(token); 
+            }
         }  
     } catch (error) {
         console.log(error);
