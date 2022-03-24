@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Input,InputGroup,InputRightElement,Button,Stack,InputLeftElement,Center } from '@chakra-ui/react';
+import { Input,InputGroup,InputRightElement,Button,Stack,InputLeftElement,Center, Text } from '@chakra-ui/react';
 import { AtSignIcon,UnlockIcon,ViewIcon,ViewOffIcon,ArrowForwardIcon } from '@chakra-ui/icons';
 import { useToast } from '@chakra-ui/react'
 
@@ -101,6 +101,24 @@ const Login = () => {
 <Stack spacing={4} w={{ base: "70%", md: "16%" }} mx='auto' paddingTop={6}>
     <Button rightIcon={<ArrowForwardIcon />} onClick={handleSubmit} colorScheme='teal' variant='outline'>Login</Button>
 </Stack>
+<Text margin={"50px"} marginInline={"100px"} fontSize={'larger'}>
+    <Text fontSize={"xxx-large"}>Rules:</Text>
+    <hr/>
+1. 23 questions in total each carrying 1 mark. Total duration is 100 minutes.
+<br/>
+2. One cannot go to the next question without answering the present question.
+<br/>
+3. Each answer is one/two/three/four word type answer and an user can try as much answers as possible. No marks will be deducted for that.
+   He/she can only move to the next question if the answer is correct.
+   <br/>
+4. Leaderboard will be updated simultaneously and one can view the leaderboard at any time. If two teams
+  have same score than one who completes first will come at the top of leaderboard.
+  <br/>
+5. It is not mandatory to answer all 23 questions in 80 minutes. The no. of correct answers matters.
+<br/>
+6. If a team member answers a question correctly and move to the next question then the other team member needs
+    to refresh the page to view the next question.
+</Text>
         </div>
     </>
   );

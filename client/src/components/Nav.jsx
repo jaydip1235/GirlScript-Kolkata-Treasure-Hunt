@@ -17,6 +17,7 @@ import {
   Stack,
   useColorMode,
   Center,
+  Text,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { useNavigate,NavLink } from 'react-router-dom';
@@ -39,7 +40,7 @@ export default function Nav() {
     const navigate=useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [playing,setPlaying]=useState(true);
+  const [playing,setPlaying]=useState(false);
   const [audio]=useState(new Audio(Music));
   audio.addEventListener('ended',()=>{
       audio.play();
@@ -59,12 +60,13 @@ export default function Nav() {
               <Avatar
                 size={"md"}
                 src={
-                  "https://pps.whatsapp.net/v/t61.24694-24/109825770_339574363722139_1249762073192397681_n.jpg?ccb=11-4&oh=01_AVzV0Cda7wKEeLBNxPIxSTzCUIetTzUQY9DbCRarRrolJw&oe=62045833"
+                  "https://i.postimg.cc/tJyp2pyv/gsk.jpg"
                 }
                 marginLeft="-2"
               />{" "}
             </NavLink>
           </Box>
+              <Text fontSize='lg'>Treasure Hunt</Text>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={2}>

@@ -9,6 +9,7 @@ import {
   InputLeftElement,
   Center,
   Image,
+  Text,
 } from "@chakra-ui/react";
 import {
   AtSignIcon,
@@ -87,8 +88,8 @@ const Play = () => {
     let data = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
     let mydata = await data.json();
     let timestamp = Date.parse(mydata.datetime);
-    let start = Date.parse("2022-03-05T17:55:00.004040+05:30");
-    let end = Date.parse("2022-03-22T19:02:00.000000+05:30");
+    let start = Date.parse("2022-03-27T17:00:00.004040+05:30");
+    let end = Date.parse("2022-03-27T18:30:00.000000+05:30");
     let startTimeDiff = new Date(start) - new Date();
 
     setStartdiff(getTime(startTimeDiff, "start"));
@@ -169,17 +170,12 @@ const Play = () => {
 
   return (
     <>
-      {gamein &&
-        !gameAfter &&
-        !gameBefore &&
-        !gameOver &&
-        ind < 4 &&
-        `Game ends in ${endDiff}`}
+      
       <Stack
         spacing={4}
         w={{ base: "96%", md: "60%" }}
         mx="auto"
-        paddingTop={20}
+        paddingTop={10}
       >
         {gameBefore && <h1>Game starts in {startdiff}</h1>}
 
@@ -193,7 +189,7 @@ const Play = () => {
           >
             <Image
               boxSize="200px"
-              src={`https://linguaholic.com/linguablog/wp-content/uploads/2021/03/A-Huge-Thank-You-720x405.jpeg.webp`}
+              src={`https://www.crownconnect.com/assets/ThankYou.jpg`}
               alt="Thank you"
             />
           </Stack>
@@ -207,6 +203,12 @@ const Play = () => {
             justifyContent="center"
             alignItems="center"
           >
+            <Text>{gamein &&
+        !gameAfter &&
+        !gameBefore &&
+        !gameOver &&
+        ind < 24 &&
+        `Game ends in ${endDiff}`}</Text>
             <h1>{!ques && <span>Loading...</span>}</h1>
             {/* <h1>{ques && ques.ques}</h1> */}
             <img height="100%" src={ques && ques.ques} alt="" />
@@ -224,7 +226,6 @@ const Play = () => {
                 onChange={(e) => setAns(e.target.value)}
                 onKeyPress={(e) => {
                   if (e.key === "Enter") {
-                    console.log("Enter");
                     handleSubmit();
                   }
                 }}
