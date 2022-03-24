@@ -2,14 +2,14 @@ const router=require('express').Router();
 const {uploadUser,updateUser,getUser,login,checkLeaderBoard} = require('../controllers/userController');
 const {protect}=require('../middlewares/protect');
 
-router.get('/getuser',protect,getUser);
+router.get(process.env.GET_USER,protect,getUser);
 
-router.post('/login', login);
+router.post(process.env.LOGIN, login);
 
-router.post('/uploaduser',uploadUser);
+router.post(process.env.UPLOAD,uploadUser);
 
-router.post('/updateUser',protect,updateUser);
+router.post(process.env.UPDATE,protect,updateUser);
 
-router.get('/checkleaderboard',checkLeaderBoard);
+router.get(process.env.CHECKLEADERBOARD,checkLeaderBoard);
 
 module.exports=router;

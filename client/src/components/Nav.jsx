@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import {MdMusicNote,MdMusicOff,MdLeaderboard} from 'react-icons/md';
 import Music from '../assets/music.mp3';
 import {
@@ -19,7 +19,7 @@ import {
   Center,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,NavLink } from 'react-router-dom';
 
 // const NavLink = ({ children }: { children: ReactNode }) => (
 //   <Link
@@ -39,37 +39,49 @@ export default function Nav() {
     const navigate=useNavigate();
   const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [playing,setPlaying]=useState(false);
+  const [playing,setPlaying]=useState(true);
   const [audio]=useState(new Audio(Music));
   audio.addEventListener('ended',()=>{
       audio.play();
   })
   const playMusic=()=>{
-            if(!playing) audio.play();
-            else audio.pause();
-            setPlaying(!playing);
+    if(!playing) audio.play();
+    else audio.pause();
+    setPlaying(!playing);
   }
+
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+      <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-          <Avatar
-                    size={'md'}
-                    src={'https://pps.whatsapp.net/v/t61.24694-24/109825770_339574363722139_1249762073192397681_n.jpg?ccb=11-4&oh=01_AVzV0Cda7wKEeLBNxPIxSTzCUIetTzUQY9DbCRarRrolJw&oe=62045833'}
-                    marginLeft='-2'
-                  />
+            <NavLink to="/play">
+              <Avatar
+                size={"md"}
+                src={
+                  "https://pps.whatsapp.net/v/t61.24694-24/109825770_339574363722139_1249762073192397681_n.jpg?ccb=11-4&oh=01_AVzV0Cda7wKEeLBNxPIxSTzCUIetTzUQY9DbCRarRrolJw&oe=62045833"
+                }
+                marginLeft="-2"
+              />{" "}
+            </NavLink>
           </Box>
 
-          <Flex alignItems={'center'}>
-            <Stack direction={'row'} spacing={2}>
+          <Flex alignItems={"center"}>
+            <Stack direction={"row"} spacing={2}>
               <Button onClick={toggleColorMode}>
-                {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
               <Button onClick={playMusic}>
-                {playing ? <MdMusicOff /> : <MdMusicNote /> }
+                {playing ? <MdMusicOff /> : <MdMusicNote />}
               </Button>
-              <Button rightIcon={<MdLeaderboard />} onClick={()=>navigate('/leaderboard')} colorScheme='teal' variant='outline'>LEADERBOARD</Button>
+              <Button
+                rightIcon={<MdLeaderboard />}
+                onClick={() => navigate("/leaderboard")}
+                colorScheme="teal"
+                variant="outline"
+              >
+                LEADERBOARD
+              </Button>
             </Stack>
           </Flex>
         </Flex>

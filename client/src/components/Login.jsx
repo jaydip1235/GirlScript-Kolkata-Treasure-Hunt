@@ -34,7 +34,7 @@ const Login = () => {
             "Content-Type": "application/json",
           },
         };
-        const { data } = await axios.post("/api/login",
+        const { data } = await axios.post(process.env.REACT_APP_LOGIN,
           { username, password },
           config
         );
@@ -58,39 +58,14 @@ const Login = () => {
     }
   };
 
-//   const validateTime = async() =>{
-//    let data = await fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata");
-//    let mydata = await data.json();
-//    let timestamp = Date.parse(mydata.datetime);
-//    //console.log(timestamp);
-//    let start = Date.parse("2022-02-03T10:21:00.004040+05:30");
-//    let end = Date.parse("2022-02-10T18:23:00.004040+05:30");
-//    if (timestamp < start) {
-//     setGameBefore(true)
-//     setGamein(false)
-//     setGameAfter(false)
-//    console.log("before")
-//    } else if (timestamp > end) {
-//        setGameBefore(false);
-//        setGamein(false);
-//        setGameAfter(true);
-//   console.log("after");
-//    } else {
-//        setGameBefore(false);
-//        setGamein(true);
-//        setGameAfter(false);
-//       console.log("in");
-//    }
-// }
+
 
 
   useEffect(() => {
     if (localStorage.getItem("thToken")) {
       navigate("/play");
     }
-    // else{
-    // setInterval(validateTime, 1000);
-    // }
+
   },[]);
   return (
     <>
